@@ -3,7 +3,7 @@ import "./Auth.scss";
 import {connect} from 'react-redux'
 // import {Redirect} from 'react-router-dom'
 import {logout} from '../../redux/reducers/user'
-import {authSuccess} from '../Alerts'
+// import {authSuccess} from '../Alerts/Alerts'
 
 
 class Logout extends React.Component{
@@ -12,7 +12,9 @@ class Logout extends React.Component{
         this.logoutHandler = this.logoutHandler.bind(this)
     }
     logoutHandler(){
-        this.props.logout().then(() => {authSuccess.fire({title: 'Logged out successfully.'})})
+        this.props.logout().then(() => {
+            // authSuccess.fire({title: 'Logged out successfully.'})
+        })
         .catch(err => console.log('Error logging out', err))
     }
     render() {

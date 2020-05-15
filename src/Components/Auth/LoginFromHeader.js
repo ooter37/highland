@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { login } from "../../redux/reducers/user";
-import {authSuccess,errorLogin} from '../Alerts'
+// import {authSuccess,errorLogin} from '../Alerts/Alerts'
 import "./Auth.scss";
 
 class Login extends React.Component {
@@ -17,11 +17,13 @@ class Login extends React.Component {
   loginHandler(e) {
     e.preventDefault();
     this.props
-      .login(this.state).then(() => authSuccess.fire({title: 'Signed in successfully.'}))
-      .catch((err) => {
-        errorLogin.fire({
-          text: 'Incorrect username or password.',
+      .login(this.state).then(() => {
+        // authSuccess.fire({title: 'Signed in successfully.'})
       })
+      .catch((err) => {
+      //   errorLogin.fire({
+      //     text: 'Incorrect username or password.',
+      // })
         console.log("Error with login from header.", err)
       });
   }
