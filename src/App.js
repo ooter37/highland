@@ -9,12 +9,46 @@ import Header from './Components/Header/Header'
 import Main from './Components/Main/Main'
 import Auth from './Components/Auth/Auth'
 
-function App() {
-  return (
-    <div className="App">
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      redirect: false
+    }
+    this.toggleRedirect = this.toggleRedirect.bind(this)
+  }
 
+  toggleRedirect(){
+    let {redirect} = this.state
+    this.setState({
+        redirect: !redirect
+    })
+}
+  componentDidMount(){
+    if (this.props.user) {
+      this.props.requestUserData()
+    }
+  }
+  render(){
+    if (this.state.redirect) {
+      return <Redirect to='/'/>
+  }
+    return (
+      <div className="App">
+        {
+          this.props.location.pathname === '/main'
+          ?
+          <Header toggleRedirect={this.toggleRedirect} location={this.props.location}/>
+          :
+          null
+        }
+      <Switch>
+        <Route exact path='/' component={Auth}/>
+        <Route path='/main' component={Main}/>
+      </Switch>
     </div>
   );
+}
 }
 
 const mapDispatchToProps = {requestUserData}
